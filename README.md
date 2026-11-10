@@ -48,5 +48,4 @@ bash run_all.sh
 - [docs/README.md](docs/README.md): full write-up of the decision
 - [docs/METRICS.md](docs/METRICS.md): definition of every metric
 - [docs/DATA_QUALITY.md](docs/DATA_QUALITY.md): reconciliations and limitations
-- [docs/DASHBOARD_SPEC.md](docs/DASHBOARD_SPEC.md): dashboard specification
 - [docs/GUIA_DEL_TABLERO.md](docs/GUIA_DEL_TABLERO.md): page-by-page guide to the dashboard
