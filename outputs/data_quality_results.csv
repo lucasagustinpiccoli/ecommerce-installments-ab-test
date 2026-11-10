@@ -1,0 +1,14 @@
+check_name,severity,expected,actual,passed
+net_sales_funnel_view_vs_orders,blocking,2808863355.17,2808863355.17,True
+orders_funnel_vs_order_rows,blocking,37861.0,37861.0,True
+duplicate_order_ids,blocking,0.0,0.0,True
+orders_outside_season,blocking,0.0,0.0,True
+variant_b_outside_events,blocking,0.0,0.0,True
+twelve_installments_in_variant_a,blocking,0.0,0.0,True
+gross_sales_vs_items,blocking,0.0,0.0,True
+orders_without_customer,blocking,0.0,0.0,True
+traffic_rows_with_zero_sessions,blocking,0.0,0.0,True
+funnel_steps_not_decreasing,blocking,0.0,0.0,True
+cancelled_with_delivery_date,blocking,0.0,0.0,True
+ab_split_share_off_by_over_1pct,blocking,0.0,0.0,True
+item_lines_sold_while_out_of_stock,known_limitation,0.0,1809.0,False

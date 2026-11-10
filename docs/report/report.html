@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>12 Interest-Free Installments: A/B Test Report</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 14mm; }
+  :root { --ink:#0F172A; --muted:#475569; --line:#E2E8F0; --head:#F1F5F9; --a:#0F766E; --b:#EA580C; }
+  body { font-family: "Segoe UI", Roboto, Arial, sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.42; margin: 0; }
+  h1 { font-size: 17pt; margin: 0 0 2px; }
+  .sub { color: var(--muted); font-size: 9pt; margin-bottom: 10px; }
+  h2 { font-size: 11.5pt; margin: 14px 0 5px; padding-bottom: 3px; border-bottom: 1px solid var(--line); }
+  p { margin: 4px 0; }
+  .callout { background: var(--head); border-left: 4px solid var(--ink); padding: 8px 12px; margin: 8px 0 4px; }
+  .callout b { font-size: 10.5pt; }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 4px 0; }
+  th, td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: right; }
+  th { background: var(--head); font-weight: 600; }
+  th:first-child, td:first-child { text-align: left; }
+  td.neg { color: var(--b); font-weight: 600; }
+  ul { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+  .two { display: flex; gap: 16px; }
+  .two > div { flex: 1; }
+  .note { color: var(--muted); font-size: 8.5pt; }
+  .links td { text-align: left; border: 0; padding: 2px 6px 2px 0; }
+  a { color: var(--a); }
+  .break { break-before: page; }
+</style>
+</head>
+<body>
+
+<h1>Should the store offer 12 interest-free installments on Cyber Monday and Black Friday?</h1>
+<div class="sub">E-commerce analytics case study · Lucas Piccoli · <b>All data is simulated</b> (fictional store, seed 42)</div>
+
+<div class="callout">
+  <b>Recommendation: keep 6 installments.</b> Offering 12 lifts sales per session by 10.6%, but cuts contribution after ads by 35%.
+  Over a 3-day event, that is about <b>ARS 1.8M given up</b> (95% CI: −0.4M to +4.0M).
+</div>
+
+<h2>The decision</h2>
+<p>In Argentina, interest-free installments ("cuotas sin interés") are paid for by the merchant: roughly 5% of net sales for 3 installments, 10% for 6 and 20% for 12.
+The question is whether offering up to 12 (variant B) instead of up to 6 (variant A) raises conversion and basket size enough to pay for that extra cost.
+Sessions during both events were split 50/50 between the two variants (~55,000 sessions each).</p>
+
+<h2>A/B test results</h2>
+<table>
+  <tr><th>Metric</th><th>A: up to 6</th><th>B: up to 12</th><th>B vs A</th><th>95% CI of the difference</th><th>p-value</th></tr>
+  <tr><td>Conversion rate</td><td>4.67%</td><td>4.82%</td><td>+3.2%</td><td>−0.10 to +0.40 pp</td><td>0.245</td></tr>
+  <tr><td>Average order value (ARS)</td><td>67,729</td><td>72,987</td><td>+7.8%</td><td>+2,068 to +8,448</td><td>0.001</td></tr>
+  <tr><td>Sales per 1,000 sessions (ARS)</td><td>2.99M</td><td>3.31M</td><td>+10.6%</td><td>+88K to +537K</td><td>bootstrap</td></tr>
+  <tr><td>Financing cost / net sales</td><td>5.0%</td><td>7.0%</td><td>+1.9 pp</td><td></td><td></td></tr>
+  <tr><td><b>Contribution after ads per 1,000 sessions (ARS)</b></td><td><b>95,028</b></td><td><b>61,719</b></td><td class="neg">−35.1%</td><td>−73,687 to +7,004</td><td>bootstrap</td></tr>
+</table>
+<p class="note">Contribution = net sales − cost of goods − payment fees − installment financing cost − net shipping. "After ads" also subtracts ad spend.
+Normalising per 1,000 sessions captures conversion and basket size together, on equal traffic. Bootstrap: 10,000 resamples at session level.</p>
+
+<h2>Why the recommendation holds, even though −35% is not significant on its own</h2>
+<p>The contribution interval barely includes zero, so the test alone does not prove B earns less (probability that B beats A: ~5%). Three facts support the decision:</p>
+<ul>
+  <li><b>B needs far more conversion than it shows.</b> To match A's contribution it needs +12.4% conversion. It reached +3.2%, and even the top of its interval is +8.6%.</li>
+  <li><b>The test has enough power for the effect that matters.</b> It had 19% power to detect +3% (that would need 6.6× the sample), but 99% power to detect the +12.4% break-even.</li>
+  <li><b>Both events point the same way.</b> B is lower on Black Friday (61,987 vs 107,134) and on Cyber Monday (61,442 vs 82,547).</li>
+</ul>
+<p>With returned orders refunded (a pessimistic scenario), contribution falls to 26,920 for A and <b>−5,023 for B</b>: B loses money after ads.</p>
+
+<h2>What would change the recommendation</h2>
+<ul>
+  <li><b>A cheaper 12-installment plan:</b> at the observed conversion, B breaks even if its financing cost falls from 20% to 13.1% of sales. That is the first thing to negotiate with the payment provider.</li>
+  <li><b>A confirmed conversion lift of at least +12.4%</b> in a new test, detectable with about 22,000 sessions per variant (less than one event).</li>
+</ul>
+
+<div class="break"></div>
+
+<h2>Beyond the test: what the rest of the dashboard shows</h2>
+<div class="two">
+  <div>
+    <p><b>Promotions and profitability.</b> Contribution margin drops from ~26% on regular days to ~12% during events, as discounts rise. Against a same-weekday baseline, both events have a negative promo ROI (−14.5% Cyber Monday, −13.6% Black Friday), with either variant.</p>
+    <p><b>Acquisition.</b> Paid search returns 3.6× (3.2× after cancellations and returns) and paid social 2.4× (2.2×). But observed LTV is below CAC in both: 19,164 vs 23,395 for search, 19,293 vs 33,046 for social. LTV covers 4 months at most, so it is a floor.</p>
+  </div>
+  <div>
+    <p><b>Operations.</b> Late deliveries rise from ~11% on regular days to 28.6% on Cyber Monday and 30.5% on Black Friday (2.6×). Stockouts double (~3% to ~7.5%), and late delivery becomes the top reason customers contact support.</p>
+    <p><b>Data quality.</b> 12 of 13 reconciliation checks pass. The one that fails is documented: 1,809 order lines (2.97%) were sold while marked out of stock. Excluding those orders, A stays at 57,293 and B at 16,571 per 1,000 sessions, so the conclusion does not change.</p>
+  </div>
+</div>
+
+<h2>Method</h2>
+<ul>
+  <li><b>Statistics:</b> two-proportion z-test for conversion, Welch's t-test for order value, session-level bootstrap for sales and contribution per 1,000 sessions, break-even conversion, power analysis and minimum detectable effect.</li>
+  <li><b>Metric design:</b> the decision metric measures money, not volume. Every rate is computed as SUM(numerator) / SUM(denominator), never as an average of rates. Two contribution definitions (returns kept vs refunded) are shown side by side.</li>
+  <li><b>Data modelling:</b> 7 source tables loaded into BigQuery with explicit schemas, 19 SQL views (A/B test, funnel and acquisition, promotions, cohorts and LTV, operations, data quality).</li>
+  <li><b>Validation:</b> the same views run in DuckDB and match 22 control values.</li>
+  <li><b>Dashboard:</b> 6 pages in Looker Studio, each with a title that states its finding. A Power BI star schema with DAX measures is also documented.</li>
+</ul>
+<p><b>Stack:</b> Python (pandas, NumPy, SciPy), SQL, BigQuery, DuckDB, Looker Studio, Power BI (DAX).</p>
+
+<h2>Limits</h2>
+<ul>
+  <li>The data is simulated. The effect of installments on conversion and basket size is an assumption of the data generator: this project demonstrates the <b>analysis method</b>, not a finding about real shoppers.</li>
+  <li>The data does not record post-event behaviour, so it cannot tell whether 12-installment buyers return more or less.</li>
+  <li>Sales lost to stockouts are not recorded and cannot be estimated.</li>
+</ul>
+
+<h2>Links</h2>
+<table class="links">
+  <tr><td><b>Dashboard:</b></td><td><a href="https://datastudio.google.com/reporting/a4715b0f-c25e-4335-94e4-1e2fbb5f4cf6">datastudio.google.com/reporting/a4715b0f-c25e-4335-94e4-1e2fbb5f4cf6</a></td></tr>
+  <tr><td><b>Code and documentation:</b></td><td>REPO_URL</td></tr>
+</table>
+
+</body>
+</html>

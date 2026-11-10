@@ -1,0 +1,22 @@
+[
+  {
+    "name": "contact_id",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "order_id",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "contact_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "reason",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  }
+]

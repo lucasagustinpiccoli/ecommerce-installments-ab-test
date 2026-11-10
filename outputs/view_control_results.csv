@@ -1,0 +1,23 @@
+control,view_value,expected,passed
+A/B conversion A = python,0.0466624169019215,0.0466624169019215,True
+A/B conversion B = python,0.04815461891242629,0.04815461891242629,True
+A/B ticket A = python,67729.13577731955,67729.13577731958,True
+A/B ticket B = python,72986.90335341371,72986.90335341365,True
+A/B contrib A = python,95027.96885529501,95027.9688552955,True
+A/B contrib B = python,61719.01033704681,61719.01033704597,True
+A/B reembolso A = python,26919.973590747693,26919.973590747646,True
+A/B reembolso B = python,-5023.354808181244,-5023.354808182262,True
+Conversion global %,3.458693185659135,3.46,True
+Recompra %,18.055643980390908,18.1,True
+ROAS busqueda,3.6364122500954768,3.6,True
+ROAS social,2.433175847748341,2.4,True
+Margen bruto normal %,35.515603502190054,35.0,True
+Margen bruto eventos %,26.16539011675408,26.0,True
+Contrib. margen normal %,26.077908224346793,26.0,True
+Contrib. margen eventos %,12.137812250848306,12.0,True
+Descuento eventos %,13.858854632019145,14.0,True
+Descuento normal %,1.2312077167186917,1.0,True
+Tarde normal %,11.464424741343198,11.0,True
+Tarde eventos %,29.543930248155604,29.0,True
+Cancelacion %,3.4573835873326115,3.5,True
+Devolucion %,8.272364702464277,8.3,True

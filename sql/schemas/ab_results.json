@@ -1,0 +1,37 @@
+[
+  {
+    "name": "metric",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "variant_a",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "variant_b",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "diff_b_minus_a",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "ci_low",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "ci_high",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "p_value",
+    "type": "FLOAT64",
+    "mode": "NULLABLE"
+  }
+]

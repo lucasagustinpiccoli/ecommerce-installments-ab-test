@@ -1,0 +1,6 @@
+# Los CSV se regeneran con run_all.sh (seed 42)
+data_raw/*.csv
+__pycache__/
+*.pyc
+.venv/
+*.pbix.bak

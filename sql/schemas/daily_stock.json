@@ -1,0 +1,17 @@
+[
+  {
+    "name": "date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "product_id",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "in_stock",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  }
+]

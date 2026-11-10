@@ -1,0 +1,127 @@
+[
+  {
+    "name": "order_id",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "customer_id",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "order_ts",
+    "type": "DATETIME",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "order_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "event",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "stage",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "channel",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "checkout_variant",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "status",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "is_returning_customer",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "promo_flag",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "discount_pct",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "installments",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "gross_sales",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "discount_amount",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "net_sales",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "cogs",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "payment_fee",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "financing_cost",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "shipping_charged",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "shipping_cost",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "promised_delivery_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "delivered_date",
+    "type": "DATE",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "is_late",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "csat_score",
+    "type": "FLOAT64",
+    "mode": "NULLABLE"
+  }
+]

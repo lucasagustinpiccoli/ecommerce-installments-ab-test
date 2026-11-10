@@ -1,0 +1,67 @@
+[
+  {
+    "name": "date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "event",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "stage",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "channel",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "checkout_variant",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "sessions",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "bounced_sessions",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "add_to_cart_sessions",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "checkout_sessions",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "orders_funnel",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "impressions",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "clicks",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "ad_spend",
+    "type": "FLOAT64",
+    "mode": "REQUIRED"
+  }
+]

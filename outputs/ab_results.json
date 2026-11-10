@@ -1,0 +1,113 @@
+{
+  "note": "DATOS SIMULADOS. El efecto de las cuotas es un supuesto del generador.",
+  "seed": 42,
+  "n_boot": 10000,
+  "sessions": {
+    "A": 54905,
+    "B": 54948
+  },
+  "orders": {
+    "A": 2562,
+    "B": 2646
+  },
+  "conversion": {
+    "a": 0.0466624169019215,
+    "b": 0.04815461891242629,
+    "relative_lift": 0.03197866954986939,
+    "z": 1.1636456367775396,
+    "p_value": 0.24456764877621628,
+    "diff_ci": [
+      -0.0010211293343009792,
+      0.004005533355310558
+    ]
+  },
+  "ticket": {
+    "a": 67729.13577731958,
+    "b": 72986.90335341365,
+    "relative_lift": 0.07762933212938972,
+    "welch_t": 3.2314699368791255,
+    "p_value": 0.001239678239407156,
+    "diff_ci": [
+      2068.019495174312,
+      8447.51565701384
+    ]
+  },
+  "sales_per_1000_sessions": {
+    "a_per_1000": 2991406.1426099623,
+    "b_per_1000": 3307443.2072140938,
+    "diff_per_1000": 316037.0646041315,
+    "diff_lo_per_1000": 88135.53344647784,
+    "diff_hi_per_1000": 536966.1294922803,
+    "pct_diff": 0.10564833042978017,
+    "prob_b_beats_a": 0.9971
+  },
+  "contribution_after_ads_per_1000_sessions": {
+    "a_per_1000": 95027.9688552955,
+    "b_per_1000": 61719.01033704597,
+    "diff_per_1000": -33308.95851824954,
+    "diff_lo_per_1000": -73686.57073576849,
+    "diff_hi_per_1000": 7004.180532952916,
+    "pct_diff": -0.35051742049723256,
+    "prob_b_beats_a": 0.0524
+  },
+  "contribution_after_ads_returns_refunded": {
+    "a_per_1000": 26919.973590747646,
+    "b_per_1000": -5023.354808182262,
+    "diff_per_1000": -31943.32839892991,
+    "diff_lo_per_1000": -70868.50550961317,
+    "diff_hi_per_1000": 7059.323187049459,
+    "pct_diff": -1.1866032591469102,
+    "prob_b_beats_a": 0.0528
+  },
+  "financing_rate": {
+    "a": 0.050094086034024515,
+    "b": 0.06957597512115908
+  },
+  "breakeven": {
+    "brief_definition": {
+      "needed_conversion_b": 0.052467218688490656,
+      "needed_lift_vs_a": 0.12439993836517549
+    },
+    "returns_refunded": {
+      "needed_conversion_b": 0.05319487778899775,
+      "needed_lift_vs_a": 0.13999405347576954
+    },
+    "observed_lift": 0.03197866954986939,
+    "conversion_lift_ci_upper": 0.08584067481394465,
+    "financing_rate_12_to_tie": 0.13109730384475168
+  },
+  "if_true_conversion_lift_8pct": {
+    "b_per_1000": 79026.07097858578,
+    "a_per_1000": 95027.9688552955,
+    "b_per_1000_returns_refunded": 9177.966086759625,
+    "a_per_1000_returns_refunded": 26919.973590747646
+  },
+  "power": {
+    "target_relative_lift": 0.03,
+    "sessions_needed_per_arm": 361427,
+    "sessions_observed_per_arm": 54905,
+    "times_observed_sample": 6.582770239504599,
+    "equivalent_events_of_3_days": 13.160387062711077,
+    "achieved_power_at_target": 0.1926923292923251,
+    "mde_relative_at_80_power": 0.07642802370308885,
+    "sessions_needed_per_arm_for_breakeven": 21945,
+    "achieved_power_at_breakeven": 0.9932768346367913
+  },
+  "impact_per_3_day_event": {
+    "sessions_per_event": 54926.5,
+    "a_minus_b_per_event": 1829544.5100526332,
+    "lo": -384715.12204323837,
+    "hi": 4047345.4275181876,
+    "a_minus_b_per_event_returns_refunded": 1754535.2273038237
+  },
+  "by_event": {
+    "black_friday": {
+      "a_per_1000": 107133.86459043449,
+      "b_per_1000": 61986.78627647397
+    },
+    "cyber_monday": {
+      "a_per_1000": 82547.26233631725,
+      "b_per_1000": 61441.75174099864
+    }
+  }
+}

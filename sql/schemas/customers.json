@@ -1,0 +1,22 @@
+[
+  {
+    "name": "customer_id",
+    "type": "INT64",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "signup_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "acquisition_channel",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "province",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  }
+]
