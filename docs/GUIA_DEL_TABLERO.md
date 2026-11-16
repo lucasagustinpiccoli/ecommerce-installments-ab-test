@@ -8,9 +8,9 @@ Resumen página por página: qué quiere demostrar cada página, qué significa 
 
 1. **Generación:** `scripts/generate_data.py` crea una tienda online ficticia con semilla fija (seed 42), así que siempre da los mismos datos. Produce 7 tablas en CSV: productos, clientes, tráfico diario, pedidos, ítems de pedido, contactos a soporte y stock diario. Cubre una temporada de septiembre a diciembre, con Cyber Monday y Black Friday en el medio.
 2. **El test A/B:** durante los dos eventos, las sesiones se reparten 50/50 entre la variante A (hasta 6 cuotas sin interés) y la B (hasta 12). `scripts/ab_test.py` calcula diferencias, intervalos de confianza, p-valores, punto de equilibrio y poder estadístico. El resultado queda en la tabla `ab_results`.
-3. **BigQuery:** `scripts/load_bigquery.sh` carga las tablas en el dataset `ecom_sim` y crea 19 vistas SQL (`sql/`). Cada vista resume los datos para un gráfico.
+3. **BigQuery:** `scripts/load_bigquery.sh` carga las tablas en el dataset `ecom_sim` y crea 20 vistas SQL (`sql/`). Cada vista resume los datos para un gráfico.
 4. **Data Studio:** el tablero se conecta a esas vistas. No hace cálculos propios, salvo traducir etapas y motivos al inglés y la tasa de quiebre de stock.
-5. **Control:** `scripts/verify_local.py` corre las mismas vistas en DuckDB y las compara contra 22 valores de control. Coinciden.
+5. **Control:** `scripts/verify_local.py` corre las mismas vistas en DuckDB y las compara contra 27 valores de control. Coinciden.
 
 **Lo que esto significa al defenderlo:** el efecto de las cuotas sobre la conversión y el ticket es un supuesto del generador. El proyecto demuestra el **método** para tomar la decisión, no un descubrimiento sobre compradores reales.
 
@@ -89,6 +89,9 @@ Las cuotas sin interés las paga la tienda. Cuestan alrededor del 5% de la venta
 - **Costo de financiación:** lo que la tienda le paga al banco o procesadora por ofrecer cuotas sin interés.
 - **Tasa de financiación:** costo de financiación / venta neta del plan.
 - **ROI de promo:** (contribución del evento - línea base) / (descuentos + financiación). Negativo significa que la promoción costó más de lo que aportó.
+- **Contribución contra la línea base:** (contribución del evento - línea base) / línea base. Es la caída que se ve en el gráfico: −57% en Cyber Monday y −54% en Black Friday.
+
+**Por qué el ROI (−14,5%) y el gráfico (−57%) no coinciden:** miden lo mismo con distinto denominador. En Cyber Monday el evento dejó 5,26 M menos que la línea base. Dividido por la línea base (9,15 M) da −57%: cuánto menos deja el evento. Dividido por el costo de la promo (36,3 M de descuentos y financiación) da −14,5%: cuánto se pierde por cada peso invertido en la promo.
 - **Línea base (same weekdays):** contribución promedio de días comunes del mismo día de la semana, antes y después del evento. Se ajusta por día de semana para no comparar un viernes con un martes.
 
 **Aclaración para defender:** el ROI negativo de los eventos es otra decisión distinta de las cuotas. Queda a la vista porque es relevante, pero no cambia la recomendación del test.

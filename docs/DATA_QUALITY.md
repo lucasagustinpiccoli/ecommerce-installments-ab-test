@@ -1,8 +1,8 @@
 # Calidad de datos
 
-Datos simulados. Resultado de `run_all.sh` con seed 42. Los 13 chequeos se ejecutaron en BigQuery y en DuckDB, con el mismo resultado. Los 22 valores de control se comparan en DuckDB.
+Datos simulados. Resultado de `run_all.sh` con seed 42. Los 13 chequeos se ejecutaron en BigQuery y en DuckDB, con el mismo resultado. Los 27 valores de control se comparan en DuckDB.
 
-**Resultado:** 12 de 13 chequeos pasan, 1 limitación conocida queda a la vista y los 22 valores de control coinciden. Los 7 CSV regenerados son idénticos a los del brief.
+**Resultado:** 12 de 13 chequeos pasan, 1 limitación conocida queda a la vista y los 27 valores de control coinciden. Los 7 CSV regenerados son idénticos a los del brief.
 
 ## Reconciliaciones
 

@@ -2,7 +2,10 @@
 -- baseline: contribucion despues de publicidad promedio por dia de semana en pre y post evento.
 -- Se usan las dos etapas para compensar el crecimiento del trafico durante la temporada.
 -- incremental = contribucion real - baseline de los mismos dias de semana.
--- promo_roi = incremental / (descuentos + financiacion del evento). Datos simulados.
+-- promo_roi = incremental / (descuentos + financiacion del evento): cuanto cambia la contribucion por
+--   cada peso invertido en la promo. Cyber Monday: -5,26 M / 36,3 M = -14,5%.
+-- contribution_vs_baseline = incremental / baseline: cuanto menos deja el evento que dias comunes.
+--   Cyber Monday: -5,26 M / 9,15 M = -57,5%. Las dos son correctas; cambia el denominador. Datos simulados.
 CREATE OR REPLACE VIEW ecom_sim.vw_promo_roi AS
 WITH o AS (
   SELECT
@@ -36,12 +39,15 @@ WITH o AS (
 )
 SELECT
   d.event,
+  CASE d.event WHEN 'cyber_monday' THEN 'Cyber Monday' ELSE 'Black Friday' END AS event_label,
   SUM(d.contribution_after_ads) AS contribution_after_ads,
   SUM(b.baseline) AS baseline_same_weekdays,
   SUM(d.contribution_after_ads) - SUM(b.baseline) AS incremental_contribution,
   SUM(d.discounts) + SUM(d.financing_cost) AS promo_cost,
-  SAFE_DIVIDE(SUM(d.contribution_after_ads) - SUM(b.baseline), SUM(d.discounts) + SUM(d.financing_cost)) AS promo_roi
+  SAFE_DIVIDE(SUM(d.contribution_after_ads) - SUM(b.baseline), SUM(d.discounts) + SUM(d.financing_cost)) AS promo_roi,
+  SAFE_DIVIDE(SUM(d.contribution_after_ads) - SUM(b.baseline), SUM(b.baseline)) AS contribution_vs_baseline,
+  CASE d.event WHEN 'cyber_monday' THEN 1 ELSE 2 END AS event_order
 FROM d
 JOIN base AS b ON d.day_of_week = b.day_of_week
 WHERE d.event <> 'normal'
-GROUP BY d.event;
+GROUP BY d.event, event_label, event_order;

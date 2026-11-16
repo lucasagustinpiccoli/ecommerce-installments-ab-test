@@ -6,6 +6,7 @@ sql/01_ab_test/vw_ab_summary.sql
 sql/02_funnel_acquisition/vw_funnel_daily.sql
 sql/02_funnel_acquisition/vw_acquisition_by_channel.sql
 sql/02_funnel_acquisition/vw_funnel_by_stage_channel.sql
+sql/02_funnel_acquisition/vw_kpi_overall.sql
 sql/03_promos_profitability/vw_profitability_by_stage.sql
 sql/03_promos_profitability/vw_promo_roi.sql
 sql/04_customers/vw_cohort_retention.sql

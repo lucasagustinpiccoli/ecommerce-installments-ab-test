@@ -4,7 +4,7 @@
 
 > **All data is simulated** (fictional store, seed 42). The effect of installments on conversion and basket size is an assumption of the data generator. This project demonstrates the analysis method, not a finding about real shoppers.
 
-- **Report (2 pages, English):** [docs/report/Lucas_Piccoli_12_Installments_AB_Test.pdf](docs/report/Lucas_Piccoli_12_Installments_AB_Test.pdf)
+- **Report (2 pages, English):** [docs/report/ecommerce_AB_Test.pdf](docs/report/ecommerce_AB_Test.pdf)
 - **Dashboard (Looker Studio, 6 pages):** [open](https://datastudio.google.com/reporting/a4715b0f-c25e-4335-94e4-1e2fbb5f4cf6)
 
 ## A/B test results
@@ -22,14 +22,14 @@ The −35% is not significant on its own, but the decision holds: B needs +12.4%
 
 ```
 scripts/    generate_data.py, ab_test.py, verify_local.py, load_bigquery.sh
-sql/        19 BigQuery views by block, explicit schemas and run order
+sql/        20 BigQuery views by block, explicit schemas and run order
 outputs/    test results and data quality checks
 docs/       report (English) and full documentation (Spanish)
 powerbi/    star schema and DAX measures
 ```
 
 - **Statistics:** two-proportion z-test, Welch's t-test, session-level bootstrap, break-even conversion, power analysis.
-- **Data modelling:** BigQuery with explicit schemas, 19 SQL views, validated in DuckDB against 22 control values.
+- **Data modelling:** BigQuery with explicit schemas, 20 SQL views, validated in DuckDB against 27 control values.
 - **Data quality:** 13 reconciliation checks; 12 pass and the one that fails is documented with its impact.
 
 Stack: Python (pandas, NumPy, SciPy), SQL, BigQuery, DuckDB, Looker Studio, Power BI (DAX).
@@ -41,7 +41,7 @@ pip install -r requirements.txt
 bash run_all.sh
 ```
 
-`run_all.sh` generates the data, runs the test, executes the 19 views in DuckDB and checks them against the control values. If `bq` is installed and authenticated, it also loads everything into BigQuery.
+`run_all.sh` generates the data, runs the test, executes the 20 views in DuckDB and checks them against the control values. If `bq` is installed and authenticated, it also loads everything into BigQuery.
 
 ## Documentation (Spanish)
 

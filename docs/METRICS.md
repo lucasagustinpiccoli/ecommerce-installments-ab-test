@@ -54,6 +54,7 @@ La primera es optimista, porque asume que no se reembolsa una venta devuelta. La
 | Margen bruto | (net_sales - cogs) / net_sales | `vw_profitability_by_stage` | Dividir por GMV |
 | Margen de contribución | (net_sales - cogs - payment_fee - financing_cost - envío neto) / net_sales | `vw_profitability_by_stage` | Olvidar que es antes de publicidad |
 | ROI de promo | (contribución después de ads - baseline) / (descuentos + financiación) | `vw_promo_roi` | Usar un baseline sin ajustar por día de semana, o solo de la etapa previa |
+| Contribución contra baseline | (contribución después de ads - baseline) / baseline | `vw_promo_roi` | Confundirla con el ROI: mide cuánto menos deja el evento, no el retorno de cada peso de promo |
 
 El baseline promedia por día de semana las etapas pre y post evento, lo que compensa el crecimiento del tráfico durante la temporada.
 

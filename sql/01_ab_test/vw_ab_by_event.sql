@@ -1,5 +1,6 @@
 -- Pregunta: ¿la diferencia entre variantes se repite en Cyber Monday y en Black Friday?
--- Mismas definiciones que vw_ab_summary, abiertas por evento. Datos simulados.
+-- Mismas definiciones que vw_ab_summary, abiertas por evento.
+-- event_order ordena Cyber Monday antes que Black Friday (orden cronologico). Datos simulados.
 CREATE OR REPLACE VIEW ecom_sim.vw_ab_by_event AS
 WITH t AS (
   SELECT event, checkout_variant, SUM(sessions) AS sessions, SUM(orders_funnel) AS orders, SUM(ad_spend) AS ad_spend
@@ -14,6 +15,8 @@ WITH t AS (
 )
 SELECT
   t.event,
+  CASE t.event WHEN 'cyber_monday' THEN 'Cyber Monday' ELSE 'Black Friday' END AS event_label,
+  CASE t.event WHEN 'cyber_monday' THEN 1 ELSE 2 END AS event_order,
   t.checkout_variant,
   t.sessions,
   t.orders,

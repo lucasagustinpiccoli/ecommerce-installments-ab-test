@@ -88,8 +88,8 @@ Normalising per 1,000 sessions captures conversion and basket size together, on 
 <ul>
   <li><b>Statistics:</b> two-proportion z-test for conversion, Welch's t-test for order value, session-level bootstrap for sales and contribution per 1,000 sessions, break-even conversion, power analysis and minimum detectable effect.</li>
   <li><b>Metric design:</b> the decision metric measures money, not volume. Every rate is computed as SUM(numerator) / SUM(denominator), never as an average of rates. Two contribution definitions (returns kept vs refunded) are shown side by side.</li>
-  <li><b>Data modelling:</b> 7 source tables loaded into BigQuery with explicit schemas, 19 SQL views (A/B test, funnel and acquisition, promotions, cohorts and LTV, operations, data quality).</li>
-  <li><b>Validation:</b> the same views run in DuckDB and match 22 control values.</li>
+  <li><b>Data modelling:</b> 7 source tables loaded into BigQuery with explicit schemas, 20 SQL views (A/B test, funnel and acquisition, promotions, cohorts and LTV, operations, data quality).</li>
+  <li><b>Validation:</b> the same views run in DuckDB and match 27 control values.</li>
   <li><b>Dashboard:</b> 6 pages in Looker Studio, each with a title that states its finding. A Power BI star schema with DAX measures is also documented.</li>
 </ul>
 <p><b>Stack:</b> Python (pandas, NumPy, SciPy), SQL, BigQuery, DuckDB, Looker Studio, Power BI (DAX).</p>

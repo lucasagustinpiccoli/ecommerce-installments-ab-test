@@ -99,6 +99,17 @@ CONTROL = [  # nombre, valor de la vista, esperado, tolerancia
     ("Tarde eventos %", ops("late_rate", EVENT) * 100, 29, 1.0),
     ("Cancelacion %", one("SELECT SUM(cancel_rate * orders) / SUM(orders) * 100 FROM ecom_sim.vw_ops_by_stage"), 3.5, 0.05),
     ("Devolucion %", one("SELECT SUM(return_rate * orders) / SUM(orders) * 100 FROM ecom_sim.vw_ops_by_stage"), 8.3, 0.05),
+    # vw_kpi_overall y vw_promo_roi se reconcilian con las vistas que ya muestra el tablero
+    ("KPI temporada sesiones = embudo", one("SELECT sessions FROM ecom_sim.vw_kpi_overall WHERE period = 'Whole season'"),
+     one("SELECT SUM(sessions) FROM ecom_sim.vw_funnel_daily"), 0),
+    ("KPI temporada conversion = embudo", one("SELECT conversion FROM ecom_sim.vw_kpi_overall WHERE period = 'Whole season'"),
+     one("SELECT SUM(orders_funnel) / SUM(sessions) FROM ecom_sim.vw_funnel_daily"), 1e-12),
+    ("KPI eventos contrib = A/B", one("SELECT contribution_after_ads FROM ecom_sim.vw_kpi_overall WHERE period = 'Events (CM + BF)'"),
+     one("SELECT SUM(contribution_after_ads) FROM ecom_sim.vw_ab_summary"), 1e-4),
+    ("KPI temporada ROAS = canales", one("SELECT roas_paid FROM ecom_sim.vw_kpi_overall WHERE period = 'Whole season'"),
+     one("SELECT SUM(roas_booked * ad_spend) / SUM(ad_spend) FROM ecom_sim.vw_acquisition_by_channel WHERE ad_spend > 0"), 1e-9),
+    ("ROI promo CM = incremental / costo", one("SELECT promo_roi FROM ecom_sim.vw_promo_roi WHERE event = 'cyber_monday'"),
+     one("SELECT incremental_contribution / promo_cost FROM ecom_sim.vw_promo_roi WHERE event = 'cyber_monday'"), 1e-12),
 ]
 rows = [(n, float(v), float(e), abs(v - e) <= tol) for n, v, e, tol in CONTROL]
 ctl = pd.DataFrame(rows, columns=["control", "view_value", "expected", "passed"])
