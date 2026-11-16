@@ -79,7 +79,7 @@ Normalising per 1,000 sessions captures conversion and basket size together, on 
     <p><b>Acquisition.</b> Paid search returns 3.6× (3.2× after cancellations and returns) and paid social 2.4× (2.2×). But observed LTV is below CAC in both: 19,164 vs 23,395 for search, 19,293 vs 33,046 for social. LTV covers 4 months at most, so it is a floor.</p>
   </div>
   <div>
-    <p><b>Operations.</b> Late deliveries rise from ~11% on regular days to 28.6% on Cyber Monday and 30.5% on Black Friday (2.6×). Stockouts double (~3% to ~7.5%), and late delivery becomes the top reason customers contact support.</p>
+    <p><b>Operations.</b> Late deliveries rise from ~11% on regular days to 28.6% on Cyber Monday and 30.5% on Black Friday (2.6×). Stockouts double (~3% to ~7.5%), and late delivery becomes the top reason customers contact support. A late order generates 3× more support contacts (0.34 vs 0.11 per order, ~1,150 extra in the season) and a CSAT of 2.87 vs 4.29; returns do not change.</p>
     <p><b>Data quality.</b> 12 of 13 reconciliation checks pass. The one that fails is documented: 1,809 order lines (2.97%) were sold while marked out of stock. Excluding those orders, A stays at 57,293 and B at 16,571 per 1,000 sessions, so the conclusion does not change.</p>
   </div>
 </div>
@@ -88,8 +88,8 @@ Normalising per 1,000 sessions captures conversion and basket size together, on 
 <ul>
   <li><b>Statistics:</b> two-proportion z-test for conversion, Welch's t-test for order value, session-level bootstrap for sales and contribution per 1,000 sessions, break-even conversion, power analysis and minimum detectable effect.</li>
   <li><b>Metric design:</b> the decision metric measures money, not volume. Every rate is computed as SUM(numerator) / SUM(denominator), never as an average of rates. Two contribution definitions (returns kept vs refunded) are shown side by side.</li>
-  <li><b>Data modelling:</b> 7 source tables loaded into BigQuery with explicit schemas, 20 SQL views (A/B test, funnel and acquisition, promotions, cohorts and LTV, operations, data quality).</li>
-  <li><b>Validation:</b> the same views run in DuckDB and match 27 control values.</li>
+  <li><b>Data modelling:</b> 7 source tables loaded into BigQuery with explicit schemas, 21 SQL views (A/B test, funnel and acquisition, promotions, cohorts and LTV, operations, data quality).</li>
+  <li><b>Validation:</b> the same views run in DuckDB and match 29 control values.</li>
   <li><b>Dashboard:</b> 6 pages in Looker Studio, each with a title that states its finding. A Power BI star schema with DAX measures is also documented.</li>
 </ul>
 <p><b>Stack:</b> Python (pandas, NumPy, SciPy), SQL, BigQuery, DuckDB, Looker Studio, Power BI (DAX).</p>

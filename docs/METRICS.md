@@ -73,6 +73,7 @@ El baseline promedia por día de semana las etapas pre y post evento, lo que com
 | Métrica | Fórmula | Fuente | Qué la haría incorrecta |
 |---|---|---|---|
 | Entregas tarde | is_late / pedidos no cancelados | `vw_ops_by_stage` | Usar todos los pedidos: da 13,4% en lugar de 13,9% |
+| Contactos extra por demora | contactos de pedidos tarde - pedidos tarde x (contactos / pedidos a tiempo) | `vw_late_delivery_impact` | Pasarlo a pesos con un costo por contacto inventado |
 | p50 y p90 de entrega | percentil de días entre pedido y entrega | `vw_ops_by_stage` | Promediar percentiles entre etapas |
 | Cancelación y devolución | pedidos en ese estado / todos los pedidos | `vw_ops_by_stage` | Calcular devoluciones sobre entregados sin aclararlo |
 | Quiebre de stock | producto-días sin stock / producto-días | `vw_stockouts_by_stage` | Leerlo como ventas perdidas: los datos no las registran |

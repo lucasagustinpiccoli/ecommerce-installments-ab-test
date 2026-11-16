@@ -26,3 +26,5 @@ KPI temporada conversion = embudo,0.03458693185659135,0.03458693185659135,True
 KPI eventos contrib = A/B,8608846.809999898,8608846.810000021,True
 KPI temporada ROAS = canales,3.111832451820382,3.1118324518203804,True
 ROI promo CM = incremental / costo,-0.14469031513012576,-0.14469031513012576,True
+Demoras: pedidos = no cancelados,36552.0,36552.0,True
+Demoras: tasa tarde = operaciones,0.13911687458962574,0.13911687458962574,True

@@ -110,6 +110,10 @@ CONTROL = [  # nombre, valor de la vista, esperado, tolerancia
      one("SELECT SUM(roas_booked * ad_spend) / SUM(ad_spend) FROM ecom_sim.vw_acquisition_by_channel WHERE ad_spend > 0"), 1e-9),
     ("ROI promo CM = incremental / costo", one("SELECT promo_roi FROM ecom_sim.vw_promo_roi WHERE event = 'cyber_monday'"),
      one("SELECT incremental_contribution / promo_cost FROM ecom_sim.vw_promo_roi WHERE event = 'cyber_monday'"), 1e-12),
+    ("Demoras: pedidos = no cancelados", one("SELECT SUM(orders) FROM ecom_sim.vw_late_delivery_impact"),
+     one("SELECT COUNT(*) FROM ecom_sim.orders WHERE status <> 'cancelled'"), 0),
+    ("Demoras: tasa tarde = operaciones", one("SELECT SUM(CASE WHEN delivery = 'Late' THEN orders END) / SUM(orders) FROM ecom_sim.vw_late_delivery_impact"),
+     one("SELECT SUM(is_late) / SUM(CASE WHEN status <> 'cancelled' THEN 1 ELSE 0 END) FROM ecom_sim.orders"), 1e-12),
 ]
 rows = [(n, float(v), float(e), abs(v - e) <= tol) for n, v, e, tol in CONTROL]
 ctl = pd.DataFrame(rows, columns=["control", "view_value", "expected", "passed"])

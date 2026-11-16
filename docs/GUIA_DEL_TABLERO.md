@@ -8,9 +8,9 @@ Resumen página por página: qué quiere demostrar cada página, qué significa 
 
 1. **Generación:** `scripts/generate_data.py` crea una tienda online ficticia con semilla fija (seed 42), así que siempre da los mismos datos. Produce 7 tablas en CSV: productos, clientes, tráfico diario, pedidos, ítems de pedido, contactos a soporte y stock diario. Cubre una temporada de septiembre a diciembre, con Cyber Monday y Black Friday en el medio.
 2. **El test A/B:** durante los dos eventos, las sesiones se reparten 50/50 entre la variante A (hasta 6 cuotas sin interés) y la B (hasta 12). `scripts/ab_test.py` calcula diferencias, intervalos de confianza, p-valores, punto de equilibrio y poder estadístico. El resultado queda en la tabla `ab_results`.
-3. **BigQuery:** `scripts/load_bigquery.sh` carga las tablas en el dataset `ecom_sim` y crea 20 vistas SQL (`sql/`). Cada vista resume los datos para un gráfico.
+3. **BigQuery:** `scripts/load_bigquery.sh` carga las tablas en el dataset `ecom_sim` y crea 21 vistas SQL (`sql/`). Cada vista resume los datos para un gráfico.
 4. **Data Studio:** el tablero se conecta a esas vistas. No hace cálculos propios, salvo traducir etapas y motivos al inglés y la tasa de quiebre de stock.
-5. **Control:** `scripts/verify_local.py` corre las mismas vistas en DuckDB y las compara contra 27 valores de control. Coinciden.
+5. **Control:** `scripts/verify_local.py` corre las mismas vistas en DuckDB y las compara contra 29 valores de control. Coinciden.
 
 **Lo que esto significa al defenderlo:** el efecto de las cuotas sobre la conversión y el ticket es un supuesto del generador. El proyecto demuestra el **método** para tomar la decisión, no un descubrimiento sobre compradores reales.
 
@@ -78,7 +78,7 @@ Las cuotas sin interés las paga la tienda. Cuestan alrededor del 5% de la venta
 | Elemento | Qué muestra | Por qué está |
 |---|---|---|
 | ROI de promo | Cyber Monday -14,5%, Black Friday -13,6% | Los eventos, con cualquier variante, dejan menos que días comunes equivalentes |
-| Descuento contra margen por etapa | Barras de descuento y línea de margen | Cuando sube el descuento, el margen cae de 26% a ~12% |
+| Descuento por etapa y margen de contribución por etapa | Dos gráficos de barras lado a lado (antes era uno de doble eje) | Cuando sube el descuento (~1% a ~14%), el margen cae de 26% a ~12%. Se separaron porque un doble eje con escalas distintas puede exagerar o esconder la relación. Ambas tasas se calculan como SUM / SUM |
 | Mix de cuotas por variante | Porcentaje de pedidos en 1, 3, 6 y 12 cuotas | B mueve pedidos hacia 12 cuotas, las más caras para la tienda |
 | Tabla por plan de cuotas | Pedidos, venta, costo de financiación, participación y tasa | Muestra el costo real de cada plan. En B, 364 pedidos (14,6%) usan 12 cuotas, con 20% de costo |
 | Evento contra línea base | Contribución después de publicidad en días de evento contra días comunes equivalentes | Black Friday 4,7 M contra 10,2 M; Cyber Monday 3,9 M contra 9,1 M |
@@ -133,6 +133,7 @@ Las cuotas sin interés las paga la tienda. Cuestan alrededor del 5% de la venta
 | Tabla de operación | CSAT, contactos por pedido, entrega P50 y P90, cancelación y devolución | El resto de la operación, etapa por etapa |
 | Quiebres de stock | ~3% en días normales, ~7,5% en eventos | La falta de stock se duplica en eventos |
 | Motivos de contacto | Porcentaje de cada motivo por etapa | En eventos crecen los reclamos por entrega tarde |
+| Costo de las demoras | Pedidos a tiempo contra tarde: contactos por pedido, CSAT y devoluciones | Muestra qué cuesta entregar tarde: 3 veces más contactos (0,34 contra 0,11 por pedido, ~1.150 contactos extra) y CSAT de 2,87 contra 4,29. Las devoluciones no cambian (8,5% contra 8,6%) |
 
 **Métricas:**
 - **Tasa de entregas tarde:** pedidos entregados tarde / pedidos no cancelados.
@@ -140,6 +141,8 @@ Las cuotas sin interés las paga la tienda. Cuestan alrededor del 5% de la venta
 - **Contactos por pedido:** contactos a soporte / pedidos.
 - **CSAT:** satisfacción promedio (1 a 5). Responde ~25% de los clientes entregados. En Black Friday baja a 3,90.
 - **Tasa de quiebre de stock:** producto-días sin stock / producto-días totales.
+
+**Por qué el costo de las demoras no está en pesos:** los datos no traen cuánto cuesta un contacto a soporte, y agregar ese número sería un supuesto nuevo. Se mide en lo que sí está: contactos extra y caída del CSAT.
 
 **Aclaración para defender:** los datos no registran las ventas perdidas por falta de stock, así que no se puede estimar cuánto se dejó de vender. Por eso la nota al pie.
 

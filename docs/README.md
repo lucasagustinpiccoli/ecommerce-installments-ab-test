@@ -65,9 +65,9 @@ pip install -r requirements.txt
 bash run_all.sh
 ```
 
-`run_all.sh` genera los datos, corre el test, ejecuta las 20 vistas en DuckDB y las compara contra los valores de control. Si encuentra `bq` instalado y autenticado, además carga todo en BigQuery. Sin `bq`, saltea solo ese paso.
+`run_all.sh` genera los datos, corre el test, ejecuta las 21 vistas en DuckDB y las compara contra los valores de control. Si encuentra `bq` instalado y autenticado, además carga todo en BigQuery. Sin `bq`, saltea solo ese paso.
 
-Las 20 vistas se ejecutaron en BigQuery (dataset `ecom_sim`) y en DuckDB, con los mismos resultados.
+Las 21 vistas se ejecutaron en BigQuery (dataset `ecom_sim`) y en DuckDB, con los mismos resultados.
 
 En el sandbox gratuito de BigQuery, las tablas y vistas vencen a los 60 días. Volver a correr `bash scripts/load_bigquery.sh` las recrea.
 
