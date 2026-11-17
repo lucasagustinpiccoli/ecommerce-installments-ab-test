@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 
 python scripts/generate_data.py data_raw
 python scripts/ab_test.py data_raw outputs
+python scripts/sensitivity.py data_raw outputs
 python scripts/verify_local.py data_raw outputs
 
 if command -v bq >/dev/null 2>&1; then

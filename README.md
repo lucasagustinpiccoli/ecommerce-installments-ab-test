@@ -18,10 +18,20 @@
 
 The −35% is not significant on its own, but the decision holds: B needs +12.4% conversion to break even and reached +3.2% (the top of its interval is +8.6%); the test had 99% power to detect that +12.4%; and B is lower in both events.
 
+## Assumptions and limits
+
+The data is simulated, so every result depends on the generator's assumptions. [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md) lists all 26 assumptions with their line in `generate_data.py`, and compares them with public sources (Mercado Pago, the Cuota Simple program, BCRA, CACE as reported by the press, Baymard, IRP Commerce, LocaliQ, Appriss Retail, FMI), each with URL and date.
+
+- **Backed by a source:** cost of 3 and 6 installments (5% and 10%, close to the Cuota Simple caps of 5.41% and 10.31%), payment fee (3%, within Mercado Pago's 1.49% to 6.29%), cart abandonment (72% vs a 70.22% average), share of event orders paid in installments (61% to 65% vs over 60% at Mercado Libre), event-day stockouts (7.5% vs 8.3%).
+- **Outside the reference range:** cost of 12 installments (20% vs 32.29% at Mercado Pago), event discounts (20% vs 31%), overall conversion (3.46% vs 1.83% in the UK), event ticket (ARS 70K vs 92K), returns, next-day delivery, search CTR.
+- **No source (own assumptions):** the effect of 12 installments on conversion (+8% at checkout) and on basket size, traffic and channel mix, cancellations, margins by category, shipping, repeat purchase.
+
+**Sensitivity:** [scripts/sensitivity.py](scripts/sensitivity.py) varies the three assumptions that drive the decision. Each of these alone, with the other two at their observed values, would make 12 installments break even: a conversion lift of +12.4% (observed +3.2%), the 12-installment cost falling to 13.1% of sales (assumed 20%), or a ticket lift of +14.4% (observed +7.8%). At Mercado Pago's 32.29%, B would need +33.7% conversion. Chart: [docs/report/sensitivity.png](docs/report/sensitivity.png).
+
 ## What's in the repo
 
 ```
-scripts/    generate_data.py, ab_test.py, verify_local.py, load_bigquery.sh
+scripts/    generate_data.py, ab_test.py, sensitivity.py, verify_local.py, load_bigquery.sh
 sql/        21 BigQuery views by block, explicit schemas and run order
 outputs/    test results and data quality checks
 docs/       report (English) and full documentation (Spanish)
@@ -41,7 +51,7 @@ pip install -r requirements.txt
 bash run_all.sh
 ```
 
-`run_all.sh` generates the data, runs the test, executes the 21 views in DuckDB and checks them against the control values. If `bq` is installed and authenticated, it also loads everything into BigQuery.
+`run_all.sh` generates the data, runs the test and the sensitivity analysis, executes the 21 views in DuckDB and checks them against the control values. If `bq` is installed and authenticated, it also loads everything into BigQuery.
 
 ## Documentation (Spanish)
 
@@ -49,3 +59,4 @@ bash run_all.sh
 - [docs/METRICS.md](docs/METRICS.md): definition of every metric
 - [docs/DATA_QUALITY.md](docs/DATA_QUALITY.md): reconciliations and limitations
 - [docs/GUIA_DEL_TABLERO.md](docs/GUIA_DEL_TABLERO.md): page-by-page guide to the dashboard
+- [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md): generator assumptions checked against public sources, and sensitivity analysis
